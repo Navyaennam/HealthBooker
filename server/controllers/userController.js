@@ -52,6 +52,9 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
+    console.log("REGISTER API HIT");
+    console.log("Request Body:", req.body);
+
     const emailPresent = await User.findOne({ email: req.body.email });
     if (emailPresent) {
       return res.status(400).send("Email already exists");
@@ -59,6 +62,8 @@ const register = async (req, res) => {
     const hashedPass = await bcrypt.hash(req.body.password, 10);
     const user = await User({ ...req.body, password: hashedPass });
     const result = await user.save();
+    console.log("SAVED USER:", result);
+    
     if (!result) {
       return res.status(500).send("Unable to register user");
     }

@@ -4,7 +4,10 @@ import "../styles/register.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
+
+// axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
+// console.log("SERVER_DOMAIN =", process.env.REACT_APP_SERVER_DOMAIN);
+axios.defaults.baseURL = "http://localhost:5000/api";
 
 function Register() {
   const [file, setFile] = useState("");
@@ -33,6 +36,9 @@ function Register() {
       data.append("file", element);
       data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
       data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
+      console.log("CLOUDINARY URL =", process.env.REACT_APP_CLOUDINARY_BASE_URL);
+console.log("CLOUD NAME =", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
+console.log("PRESET =", process.env.REACT_APP_CLOUDINARY_PRESET);
       fetch(process.env.REACT_APP_CLOUDINARY_BASE_URL, {
         method: "POST",
         body: data,
@@ -51,7 +57,9 @@ function Register() {
       e.preventDefault();
 
       if (loading) return;
-      if (file === "") return;
+      if (file === "") {
+  console.log("No image selected");
+};
 
       const { firstname, lastname, email, password, confpassword } =
         formDetails;

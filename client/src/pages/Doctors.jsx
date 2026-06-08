@@ -17,6 +17,7 @@ const Doctors = () => {
   const fetchAllDocs = async () => {
     dispatch(setLoading(true));
     const data = await fetchData(`/doctor/getalldoctors`);
+    console.log("Doctors Data:", data);
     setDoctors(data);
     dispatch(setLoading(false));
   };

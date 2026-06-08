@@ -53,7 +53,7 @@ const schema = mongoose.Schema(
     pic: {
       type: String,
       default:
-        "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+        "https://ui-avatars.com/api/?name=User&background=random",
     },
   },
   {

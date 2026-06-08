@@ -1,9 +1,12 @@
 const express = require("express");
 const doctorController = require("../controllers/doctorController");
 const auth = require("../middleware/auth");
+const Doctor = require("../models/doctorModel");
 
 const doctorRouter = express.Router();
-
+doctorRouter.get("/all", async (req, res) => {
+  res.send("Doctor route working");
+});
 doctorRouter.get("/getalldoctors", doctorController.getalldoctors);
 
 doctorRouter.get("/getnotdoctors", auth, doctorController.getnotdoctors);
